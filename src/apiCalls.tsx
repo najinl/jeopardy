@@ -45,7 +45,7 @@ export const getCategories = () : Promise<Categories[]> => {
 
 export const getCategoryClues = async (randomCategoryIds : number[]) : Promise<CategoryClues[]> => {
   const responses = await Promise.all(randomCategoryIds.map(category =>
-    fetch(`http://jservice.io/api/clues?category=${category}`)));
+    fetch(`http://jservice.io/api/category?id=${category}`)));
   const json = await Promise.all(responses.map(response => response.json()));
   return json;
 }
