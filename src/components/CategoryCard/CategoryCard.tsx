@@ -11,6 +11,7 @@ const CategoryCard = ({ categoryClues } : CategoryCard) : JSX.Element => {
   })
 
   const categoryValues = (value : number) => {
+    //edge case to look into : get undefined back if no clues exist with the specified point value
     const targetValue = categoryClues.map(category => category.clues.filter(clue => clue.value === value))
     const randomClue = targetValue.map(category => Math.floor(Math.random() * (category.length)))
     console.log(targetValue)
@@ -19,7 +20,7 @@ const CategoryCard = ({ categoryClues } : CategoryCard) : JSX.Element => {
     console.log(individualClues)
   }
 
-  console.log(categoryValues(1000))
+  console.log(categoryValues(400))
 
   return (
     <div>{categoryTitles}</div>
