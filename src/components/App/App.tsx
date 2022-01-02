@@ -30,7 +30,7 @@ function App() {
 
   const generateRandomIndexes = (maxNumPlusOne: number) : number[] => {
     let randomIndexArray : number[] = [];
-    for(let i = 0; i < 6; i++) {
+    for(let i = 0; i < 5; i++) {
       const randomIndex = Math.floor(Math.random() * (maxNumPlusOne));
       if(!randomIndexArray.includes(randomIndex)) {
         randomIndexArray.push(randomIndex)
@@ -48,7 +48,7 @@ function App() {
   }
 
   // console.log('allCategories', allCategories)
-  // console.log('Clues', categoryClues)
+  console.log('Clues', categoryClues)
 
   return (
     <div className="App">ß
