@@ -1,4 +1,5 @@
 import React from 'react';
+import ClueCard from '../ClueCard/ClueCard';
 import { CategoryClues } from '../../apiCalls';
 
 interface CategoryCard {
@@ -16,14 +17,18 @@ const CategoryCard = ({ categoryClues } : CategoryCard) : JSX.Element => {
     const randomClue = targetValue.map(category => Math.floor(Math.random() * (category.length)))
     console.log(targetValue)
     console.log(randomClue)
-    const individualClues = targetValue.map((clues, index) => targetValue[index][randomClue[index]])
-    console.log(individualClues)
+    return targetValue.map((clues, index) => targetValue[index][randomClue[index]])
+    // return individualClues;
   }
-
-  console.log(categoryValues(400))
+  //
+  // console.log(categoryValues(600))
+  // console.log(categoryClues)
 
   return (
-    <div>{categoryTitles}</div>
+    <section className='game-board'>
+      <div className='category-cards'>{categoryTitles}</div>
+      <ClueCard categoryValues={categoryValues}/>
+    </section>
   )
 }
 
