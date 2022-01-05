@@ -22,6 +22,9 @@ function App() {
         setCategories(randomCategoryIds)
         getCategoryClues(randomCategoryIds)
           .then(categoryData => {
+            if(categoryData.length < 5) {
+              window.location.reload()
+            }
             setCategoryClues(categoryData)
             setLoadingClues(false)
           }
@@ -51,10 +54,8 @@ function App() {
   console.log('Clues', categoryClues)
 
   return (
-    <div className="App">ß
-      <header className="App-header">
-        <CategoryCard categoryClues={categoryClues} />
-      </header>
+    <div className="App">
+      <CategoryCard categoryClues={categoryClues} />
     </div>
   );
 }
