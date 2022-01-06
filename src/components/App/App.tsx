@@ -7,6 +7,7 @@ function App() {
   const [allCategories, setCategories] = useState<number[]>([]);
   const [categoryClues, setCategoryClues] = useState<CategoryClues[]>([]);
   const [loadingClues, setLoadingClues] = useState<boolean>(true);
+  const [currentQuestion, setCurrentQuestion] = useState<string>('');
 
   //create an object with keys that match the elements within the allCategories array
   //value is default 200, 400, 600 , 800, 1000
@@ -50,12 +51,22 @@ function App() {
     return randomCategoryIds;
   }
 
+  const displayQuestion = (question: string, answer: string) => {
+    // return <p>{question}</p>
+    setCurrentQuestion(question)
+    setTimeout(() => setCurrentQuestion(''), 1000)
+  }
+
   // console.log('allCategories', allCategories)
   console.log('Clues', categoryClues)
 
   return (
     <div className="App">
-      <CategoryCard categoryClues={categoryClues} />
+      <CategoryCard
+        categoryClues={categoryClues}
+        displayQuestion={displayQuestion}
+        currentQuestion={currentQuestion}
+      />
     </div>
   );
 }

@@ -5,9 +5,11 @@ import './CategoryCard.css';
 
 interface CategoryCard {
   categoryClues: CategoryClues[]
+  displayQuestion: (question: string, answer: string) => void
+  currentQuestion: string
 }
 
-const CategoryCard = ({ categoryClues } : CategoryCard) : JSX.Element => {
+const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion } : CategoryCard) : JSX.Element => {
   const categoryTitles = categoryClues.map(category =>
     category.title.toUpperCase()).map(title => {
     return <p className='category' key={Math.random()}>{title}</p>
@@ -18,7 +20,7 @@ const CategoryCard = ({ categoryClues } : CategoryCard) : JSX.Element => {
     const targetValue = categoryClues.map(category => category.clues.filter(clue => clue.value === value))
     const randomClue = targetValue.map(category => Math.floor(Math.random() * (category.length)))
     console.log(targetValue)
-  
+
     targetValue.forEach(value => {
       if(!value.length) {
         window.location.reload();
@@ -34,8 +36,12 @@ const CategoryCard = ({ categoryClues } : CategoryCard) : JSX.Element => {
 
   return (
     <section className='game-board'>
-      <div className='category-cards'>{categoryTitles}</div>
-      <ClueCard categoryValues={categoryValues}/>
+      {!currentQuestion && <div className='category-cards'>{categoryTitles}</div>}
+      <ClueCard
+        categoryValues={categoryValues}
+        displayQuestion={displayQuestion}
+        currentQuestion={currentQuestion}
+      />
     </section>
   )
 }
