@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { getCategories, getCategoryClues, Categories, CategoryClues } from '../../apiCalls';
+import { CurrentQuestion } from '../../Models';
 import CategoryCard from '../CategoryCard/CategoryCard';
 import './App.css';
 
@@ -7,7 +8,10 @@ function App() {
   const [allCategories, setCategories] = useState<number[]>([]);
   const [categoryClues, setCategoryClues] = useState<CategoryClues[]>([]);
   const [loadingClues, setLoadingClues] = useState<boolean>(true);
-  const [currentQuestion, setCurrentQuestion] = useState<string>('');
+  //could probably make currentQuestion/currentAnswer a hash or object
+  // const [currentQuestion, setCurrentQuestion] = useState<string>('');
+  // const [currentAnswer, currentAnswer] = useState<string>('');
+  const [currentQuestion, setCurrentQuestion]  = useState<CurrentQuestion>({question: '', answer: ''});
 
   //create an object with keys that match the elements within the allCategories array
   //value is default 200, 400, 600 , 800, 1000
@@ -53,8 +57,9 @@ function App() {
 
   const displayQuestion = (question: string, answer: string) => {
     // return <p>{question}</p>
-    setCurrentQuestion(question)
-    setTimeout(() => setCurrentQuestion(''), 1000)
+
+    setCurrentQuestion({question: question, answer: answer})
+    setTimeout(() => setCurrentQuestion(prevState => ({...prevState, question: ''})), 8000)
   }
 
   // console.log('allCategories', allCategories)

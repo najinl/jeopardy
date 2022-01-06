@@ -1,12 +1,13 @@
 import { useState } from 'react';
 import { CategoryClues, Clues } from '../../apiCalls'
+import { CurrentQuestion } from '../../Models';
 import './ClueCard.css'
 
 interface CategoryCard {
   // categoryClues: CategoryClues[]
   categoryValues: (value: number) => Clues[]
   displayQuestion: (question: string, answer: string) => void
-  currentQuestion: string
+  currentQuestion: CurrentQuestion
 }
 
 const ClueCard = ({ categoryValues, displayQuestion, currentQuestion } : CategoryCard) : JSX.Element => {
@@ -36,7 +37,7 @@ const ClueCard = ({ categoryValues, displayQuestion, currentQuestion } : Categor
 
   return (
     <div className='clue-cards'>
-      {!currentQuestion ? categoryCards(gameValues) : <p>{currentQuestion}</p>}
+      {!currentQuestion.question ? categoryCards(gameValues) : <p>{currentQuestion.question}</p>}
     </div>
   )
 

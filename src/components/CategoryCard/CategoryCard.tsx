@@ -1,12 +1,13 @@
 import React from 'react';
 import ClueCard from '../ClueCard/ClueCard';
 import { CategoryClues } from '../../apiCalls';
+import { CurrentQuestion } from '../../Models';
 import './CategoryCard.css';
 
 interface CategoryCard {
   categoryClues: CategoryClues[]
   displayQuestion: (question: string, answer: string) => void
-  currentQuestion: string
+  currentQuestion: CurrentQuestion
 }
 
 const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion } : CategoryCard) : JSX.Element => {
@@ -36,7 +37,7 @@ const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion } : Cate
 
   return (
     <section className='game-board'>
-      {!currentQuestion && <div className='category-cards'>{categoryTitles}</div>}
+      {!currentQuestion.question && <div className='category-cards'>{categoryTitles}</div>}
       <ClueCard
         categoryValues={categoryValues}
         displayQuestion={displayQuestion}
