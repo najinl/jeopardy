@@ -12,9 +12,6 @@ function App() {
   const [answerDisplayed, setAnswerDisplayed] = useState<boolean>(false);
   const [playerScore, modifyPlayerScore] = useState<number>(0);
   const [currentValue, setCurrentValue] = useState<number>(0);
-  //could probably make currentQuestion/currentAnswer a hash or object
-  // const [currentQuestion, setCurrentQuestion] = useState<string>('');
-  // const [currentAnswer, currentAnswer] = useState<string>('');
   const [currentQuestion, setCurrentQuestion]  = useState<CurrentQuestion>({question: '', answer: ''});
 
   //create an object with keys that match the elements within the allCategories array

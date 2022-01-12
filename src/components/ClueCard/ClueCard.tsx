@@ -4,7 +4,6 @@ import { CurrentQuestion } from '../../Models';
 import './ClueCard.css'
 
 interface CategoryCard {
-  // categoryClues: CategoryClues[]
   categoryValues: (value: number) => Clues[]
   displayQuestion: (question: string, answer: string, value: number) => void
   currentQuestion: CurrentQuestion

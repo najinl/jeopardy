@@ -33,9 +33,8 @@ const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion, questio
         window.location.reload();
       }
     })
-    console.log('random clue',randomClue)
+    // console.log('random clue',randomClue)
     return targetValue.map((clues, index) => targetValue[index][randomClue[index]])
-    // return individualClues;
   }
   //
   // console.log(categoryValues(600))
