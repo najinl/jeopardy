@@ -6,14 +6,17 @@ import './CategoryCard.css';
 
 interface CategoryCard {
   categoryClues: CategoryClues[]
-  displayQuestion: (question: string, answer: string) => void
+  displayQuestion: (question: string, answer: string, value: number) => void
   currentQuestion: CurrentQuestion
   questionDisplayed: boolean
   answerDisplayed: boolean
   setAnswerDisplayed: (boolean: boolean) => void
+  playerScore: number
+  currentValue: number
+  modifyPlayerScore: (score: number) => void
 }
 
-const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion, questionDisplayed, answerDisplayed, setAnswerDisplayed } : CategoryCard) : JSX.Element => {
+const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion, questionDisplayed, answerDisplayed, setAnswerDisplayed, playerScore, currentValue, modifyPlayerScore } : CategoryCard) : JSX.Element => {
   const categoryTitles = categoryClues.map(category =>
     category.title.toUpperCase()).map(title => {
     return <p className='category' key={Math.random()}>{title}</p>
@@ -40,6 +43,7 @@ const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion, questio
 
   return (
     <section className='game-board'>
+      {playerScore}
       {(!questionDisplayed && !answerDisplayed) && <div className='category-cards'>{categoryTitles}</div>}
       <ClueCard
         categoryValues={categoryValues}
@@ -48,6 +52,9 @@ const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion, questio
         questionDisplayed={questionDisplayed}
         answerDisplayed={answerDisplayed}
         setAnswerDisplayed={setAnswerDisplayed}
+        playerScore={playerScore}
+        currentValue={currentValue}
+        modifyPlayerScore={modifyPlayerScore}
       />
     </section>
   )

@@ -10,6 +10,8 @@ function App() {
   const [loadingClues, setLoadingClues] = useState<boolean>(true);
   const [questionDisplayed, setQuestionDisplayed] = useState<boolean>(false);
   const [answerDisplayed, setAnswerDisplayed] = useState<boolean>(false);
+  const [playerScore, modifyPlayerScore] = useState<number>(0);
+  const [currentValue, setCurrentValue] = useState<number>(0);
   //could probably make currentQuestion/currentAnswer a hash or object
   // const [currentQuestion, setCurrentQuestion] = useState<string>('');
   // const [currentAnswer, currentAnswer] = useState<string>('');
@@ -58,18 +60,16 @@ function App() {
     return randomCategoryIds;
   }
 
-  const displayQuestion = (question: string, answer: string) => {
-    // return <p>{question}</p>
-
+  const displayQuestion = (question: string, answer: string, value: number) => {
+    setCurrentValue(value)
+    console.log(playerScore)
     setCurrentQuestion({question: question, answer: answer})
     setQuestionDisplayed(true)
     console.log(questionDisplayed)
-  //   setTimeout(() => setCurrentQuestion(prevState => ({...prevState, question: ''})), 8000)
-  // }
-  setTimeout(() => {
-    setQuestionDisplayed(false)
-    setAnswerDisplayed(true)
-  }, 3000)
+    setTimeout(() => {
+      setQuestionDisplayed(false)
+      setAnswerDisplayed(true)
+    }, 3000)
 }
   // console.log('allCategories', allCategories)
   console.log('Clues', categoryClues)
@@ -83,6 +83,9 @@ function App() {
         questionDisplayed={questionDisplayed}
         answerDisplayed={answerDisplayed}
         setAnswerDisplayed={setAnswerDisplayed}
+        playerScore={playerScore}
+        currentValue={currentValue}
+        modifyPlayerScore={modifyPlayerScore}
       />
     </div>
   );
