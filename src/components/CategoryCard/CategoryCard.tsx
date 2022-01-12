@@ -8,9 +8,12 @@ interface CategoryCard {
   categoryClues: CategoryClues[]
   displayQuestion: (question: string, answer: string) => void
   currentQuestion: CurrentQuestion
+  questionDisplayed: boolean
+  answerDisplayed: boolean
+  setAnswerDisplayed: (boolean: boolean) => void
 }
 
-const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion } : CategoryCard) : JSX.Element => {
+const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion, questionDisplayed, answerDisplayed, setAnswerDisplayed } : CategoryCard) : JSX.Element => {
   const categoryTitles = categoryClues.map(category =>
     category.title.toUpperCase()).map(title => {
     return <p className='category' key={Math.random()}>{title}</p>
@@ -37,11 +40,14 @@ const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion } : Cate
 
   return (
     <section className='game-board'>
-      {!currentQuestion.question && <div className='category-cards'>{categoryTitles}</div>}
+      {(!questionDisplayed && !answerDisplayed) && <div className='category-cards'>{categoryTitles}</div>}
       <ClueCard
         categoryValues={categoryValues}
         displayQuestion={displayQuestion}
         currentQuestion={currentQuestion}
+        questionDisplayed={questionDisplayed}
+        answerDisplayed={answerDisplayed}
+        setAnswerDisplayed={setAnswerDisplayed}
       />
     </section>
   )

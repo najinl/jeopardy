@@ -8,9 +8,12 @@ interface CategoryCard {
   categoryValues: (value: number) => Clues[]
   displayQuestion: (question: string, answer: string) => void
   currentQuestion: CurrentQuestion
+  questionDisplayed: boolean
+  answerDisplayed: boolean
+  setAnswerDisplayed: (boolean: boolean) => void
 }
 
-const ClueCard = ({ categoryValues, displayQuestion, currentQuestion } : CategoryCard) : JSX.Element => {
+const ClueCard = ({ categoryValues, displayQuestion, currentQuestion, questionDisplayed, answerDisplayed, setAnswerDisplayed } : CategoryCard) : JSX.Element => {
   // const [currentQuestion, setCurrentQuestion] = useState<string>('');
   const gameValues = [200, 400, 600, 800, 1000]
 
@@ -34,10 +37,18 @@ const ClueCard = ({ categoryValues, displayQuestion, currentQuestion } : Categor
   //
   // console.log(categoryValues(600))
   // console.log(categoryClues)
+  console.log(questionDisplayed)
 
   return (
     <div className='clue-cards'>
-      {!currentQuestion.question ? categoryCards(gameValues) : <p>{currentQuestion.question}</p>}
+      {(!questionDisplayed && !answerDisplayed) && categoryCards(gameValues)}
+      {questionDisplayed && <p>{currentQuestion.question}</p>}
+      {answerDisplayed &&
+        <>
+          <p>{currentQuestion.question}</p>
+          <button onClick={() => setAnswerDisplayed(false)}>Back to Board!</button>
+        </>
+      }
     </div>
   )
 

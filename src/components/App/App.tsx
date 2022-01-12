@@ -8,6 +8,8 @@ function App() {
   const [allCategories, setCategories] = useState<number[]>([]);
   const [categoryClues, setCategoryClues] = useState<CategoryClues[]>([]);
   const [loadingClues, setLoadingClues] = useState<boolean>(true);
+  const [questionDisplayed, setQuestionDisplayed] = useState<boolean>(false);
+  const [answerDisplayed, setAnswerDisplayed] = useState<boolean>(false);
   //could probably make currentQuestion/currentAnswer a hash or object
   // const [currentQuestion, setCurrentQuestion] = useState<string>('');
   // const [currentAnswer, currentAnswer] = useState<string>('');
@@ -25,11 +27,10 @@ function App() {
       .then(data => {
         let randomCategoryIds = generateRandomCategories(data)
         setCategories(randomCategoryIds)
+        console.log('randomCatIds', randomCategoryIds)
         getCategoryClues(randomCategoryIds)
           .then(categoryData => {
-            if(categoryData.length < 5) {
-              window.location.reload()
-            }
+            console.log('CategoryData', categoryData)
             setCategoryClues(categoryData)
             setLoadingClues(false)
           }
@@ -38,10 +39,12 @@ function App() {
 
   const generateRandomIndexes = (maxNumPlusOne: number) : number[] => {
     let randomIndexArray : number[] = [];
-    for(let i = 0; i < 5; i++) {
+    let i = 0;
+    while(i < 5) {
       const randomIndex = Math.floor(Math.random() * (maxNumPlusOne));
       if(!randomIndexArray.includes(randomIndex)) {
         randomIndexArray.push(randomIndex)
+        i++
       }
     }
     return randomIndexArray;
@@ -59,9 +62,15 @@ function App() {
     // return <p>{question}</p>
 
     setCurrentQuestion({question: question, answer: answer})
-    setTimeout(() => setCurrentQuestion(prevState => ({...prevState, question: ''})), 8000)
-  }
-
+    setQuestionDisplayed(true)
+    console.log(questionDisplayed)
+  //   setTimeout(() => setCurrentQuestion(prevState => ({...prevState, question: ''})), 8000)
+  // }
+  setTimeout(() => {
+    setQuestionDisplayed(false)
+    setAnswerDisplayed(true)
+  }, 3000)
+}
   // console.log('allCategories', allCategories)
   console.log('Clues', categoryClues)
 
@@ -71,6 +80,9 @@ function App() {
         categoryClues={categoryClues}
         displayQuestion={displayQuestion}
         currentQuestion={currentQuestion}
+        questionDisplayed={questionDisplayed}
+        answerDisplayed={answerDisplayed}
+        setAnswerDisplayed={setAnswerDisplayed}
       />
     </div>
   );
