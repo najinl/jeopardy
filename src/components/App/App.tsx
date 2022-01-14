@@ -67,7 +67,7 @@ function App() {
     setTimeout(() => {
       setQuestionDisplayed(false)
       setAnswerDisplayed(true)
-    }, 3000)
+    }, 10000)
 }
   // console.log('allCategories', allCategories)
   console.log('Clues', categoryClues)
