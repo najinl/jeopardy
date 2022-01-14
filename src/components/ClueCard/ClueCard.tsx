@@ -45,12 +45,14 @@ const ClueCard = ({ categoryValues, displayQuestion, currentQuestion, questionDi
   return (
     <div className='clue-cards'>
       {(!questionDisplayed && !answerDisplayed) && categoryCards(gameValues)}
-      {questionDisplayed && <p>{currentQuestion.question}</p>}
+      {questionDisplayed && <p className='question'>{currentQuestion.question}</p>}
       {answerDisplayed &&
         <>
-          <p>{currentQuestion.answer}</p>
-          <button onClick={() => tallyPoints(true)}>Got It Right!</button>
-          <button onClick={() => tallyPoints(false)}>Missed It.</button>
+          <p className='answer'>{currentQuestion.answer}</p>
+          <div className='mark-answer'>
+            <button className='mark-correct' onClick={() => tallyPoints(true)}>Got It Right!</button>
+            <button className='mark-correct' onClick={() => tallyPoints(false)}>Missed It.</button>
+          </div>
         </>
       }
     </div>

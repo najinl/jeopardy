@@ -42,7 +42,6 @@ const CategoryCard = ({ categoryClues, displayQuestion, currentQuestion, questio
 
   return (
     <section className='game-board'>
-      {playerScore}
       {(!questionDisplayed && !answerDisplayed) && <div className='category-cards'>{categoryTitles}</div>}
       <ClueCard
         categoryValues={categoryValues}

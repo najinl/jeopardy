@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react';
 import { getCategories, getCategoryClues, Categories, CategoryClues } from '../../apiCalls';
 import { CurrentQuestion } from '../../Models';
 import CategoryCard from '../CategoryCard/CategoryCard';
+import Header from '../Header/Header';
 import './App.css';
 
 function App() {
@@ -73,6 +74,11 @@ function App() {
 
   return (
     <div className="App">
+      <Header
+        playerScore={playerScore}
+        questionDisplayed={questionDisplayed}
+        answerDisplayed={answerDisplayed}
+      />
       <CategoryCard
         categoryClues={categoryClues}
         displayQuestion={displayQuestion}
